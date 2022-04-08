@@ -1,0 +1,11 @@
+FROM node:latest
+
+WORKDIR /var/www/html
+
+# Copy project
+COPY --chown=www-data:www-data . /var/www/html
+
+RUN npm install --only=production
+RUN npm run build
+
+CMD ["node", "dist/main.js"]
